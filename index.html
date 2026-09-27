@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MR-GULL | 1 HOUR FIXER</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0d0f12;
+      --card-bg: #16191e;
+      --accent: #25d366;
+      --accent-hover: #1eaa53;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #262b33;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 50px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 8%;
+      border-bottom: 1px solid var(--border);
+      background: rgba(13, 15, 18, 0.85);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    .user-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+    }
+
+    .logo span small {
+      display: block;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    .btn-channel {
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .btn-channel:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-pic-container {
+      margin: 0 auto 20px auto;
+      width: 140px;
+      height: 140px;
+      position: relative;
+    }
+
+    .hero-pic {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(37, 211, 102, 0.1);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      border: 1px solid rgba(37, 211, 102, 0.2);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      background: #0d0f12;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--accent);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: var(--accent-hover);
+    }
+
+    .result-card {
+      display: none;
+      background: var(--card-bg);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 25px;
+      margin-top: 25px;
+    }
+
+    .result-card h3 {
+      color: var(--accent);
+      margin-bottom: 15px;
+    }
+
+    .output-box {
+      background: #0d0f12;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      white-space: pre-wrap;
+      font-family: monospace;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+
+    .action-btns {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-action {
+      flex: 1;
+      padding: 10px;
+      background: #262b33;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn-action.copy {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .contacts {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .contacts h2 {
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .email-list {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .email-chip {
+      background: #0d0f12;
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo">
+      <img src="profile.jpg" alt="MR-GULL logo" class="user-avatar">
+      <span>MR-GULL<small>1 HOUR FIXER</small></span>
+    </a>
+    <a href="https://whatsapp.com/channel/0029Vb85fZWGU3BSq6gCOn2q" target="_blank" rel="noopener" class="btn-channel">Follow channel ↗</a>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-pic-container">
+        <img src="profile.jpg" alt="MR-GULL artwork" class="hero-pic">
+      </div>
+      <span class="badge">Support mail workshop · MR-GULL</span>
+      <h1>Fix it. <span>Write it.</span></h1>
+      <p>Aap apne WhatsApp account ki details fill karein, hum aapke liye ready-to-send support email generate kar denge.</p>
+    </section>
+
+    <section class="form-card" id="generator">
+      <div class="form-group">
+        <label>Issue Type (Masla select karein):</label>
+        <select id="issueType">
+          <option value="banned">Account Unban Request (Banned Account)</option>
+          <option value="otp">Verification Code / OTP Not Arriving</option>
+          <option value="stolen">Stolen / Hacked Account</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>WhatsApp Number (Country code ke saath):</label>
+        <input type="text" id="phoneNumber" placeholder="+92 300 0000000">
+      </div>
+
+      <div class="form-group">
+        <label>Apna Naam:</label>
+        <input type="text" id="userName" placeholder="MR-GULL">
+      </div>
+
+      <button class="btn-submit" onclick="generateMail()">Generate Support Mail</button>
+
+      <div class="result-card" id="resultCard">
+        <h3>Aapka Support Email Tayar Hai!</h3>
+        <div class="output-box" id="outputMail"></div>
+        <div class="action-btns">
+          <button class="btn-action copy" onclick="copyMail()">Copy Text</button>
+          <a id="mailtoBtn" href="#" class="btn-action">Open Email App</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contacts">
+      <h2>Official Support Contacts</h2>
+      <div class="email-list">
+        <div class="email-chip">support@whatsapp.com</div>
+        <div class="email-chip">android_web@support.whatsapp.com</div>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.85rem;">Note: Yeh tool sirf aapka mail draft karta hai. Mail bhejne ke liye "Open Email App" par click karein.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>MR-GULL 1 Hour Fixer &copy; 2026 · Private by design</p>
+  </footer>
+
+  <script>
+    function generateMail() {
+      const issue = document.getElementById('issueType').value;
+      const phone = document.getElementById('phoneNumber').value.trim();
+      const name = document.getElementById('userName').value.trim();
+
+      if (!phone) {
+        alert('Baraye meharbani apna phone number darj karein.');
+        return;
+      }
+
+      let subject = "";
+      let body = "";
+
+      if (issue === "banned") {
+        subject = "Urgent: Unban Request for My WhatsApp Account " + phone;
+        body = `Dear WhatsApp Support Team,\n\nMy WhatsApp account (${phone}) has been banned recently. I believe this was a system mistake as I strictly follow all WhatsApp Terms of Service.\n\nI use this account for important personal and daily communications. Kindly review my account status and unban it as soon as possible.\n\nPhone Number: ${phone}\nName: ${name || "User"}\n\nThank you for your support.\nBest regards,\n${name || "User"}`;
+      } else if (issue === "otp") {
+        subject = "Issue Receiving Verification SMS Code for " + phone;
+        body = `Dear WhatsApp Support Team,\n\nI am unable to receive the 6-digit verification code via SMS or Call for my account number: ${phone}.\n\nI have verified my cellular signal and network connectivity. Please assist me in resolving this issue.\n\nPhone Number: ${phone}\nName: ${name || "User"}\n\nThank you,\n${name || "User"}`;
+      } else {
+        subject = "Account Recovery Request for " + phone;
+        body = `Dear WhatsApp Support Team,\n\nMy WhatsApp account registered with number ${phone} has been compromised. Please deactivate my account to prevent unauthorized access.\n\nPhone Number: ${phone}\nName: ${name || "User"}\n\nThank you,\n${name || "User"}`;
+      }
+
+      const fullOutput = `Subject: ${subject}\n\n${body}`;
+      document.getElementById('outputMail').innerText = fullOutput;
+      
+      const mailtoUrl = `mailto:support@whatsapp.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      document.getElementById('mailtoBtn').href = mailtoUrl;
+
+      document.getElementById('resultCard').style.display = 'block';
+    }
+
+    function copyMail() {
+      const text = document.getElementById('outputMail').innerText;
+      navigator.clipboard.writeText(text);
+      alert('Email text copy ho gaya hai!');
+    }
+  </script>
+</body>
+        </html>
